@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>个人主页</title>
+</head>
+<body>
+	<script>
+		const usernamewithnocookie = localStorage.getItem("transferredData");
+		const username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		if (username !=''){	
+		document.write("这是 " + username + " 的个人主页");
+		}
+		else{	
+		document.write("这是 " + usernamewithnocookie + " 的个人主页");
+		}
+		//清空cookie功能
+		function clearCookie() {
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        alert("已清空 cookie");
+      }
+	</script>
+
+	<button onclick="clearCookie()">清空 cookie</button>
+</body>
+</html>

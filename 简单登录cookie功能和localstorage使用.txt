@@ -1,0 +1,26 @@
+我在index.html 的 <img id="my-icon" src="./img/headline-user.jpg" alt=""> //登录头像
+
+下增加了这段script
+                        <script>
+                            //获取cookie中的username值
+                            const username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+                            //获取图片元素
+                            const image = document.getElementById("my-icon");
+
+                            //为图片添加点击事件
+                            image.addEventListener('click', function() {
+                            //根据username判断显示哪个链接并跳转到相应的链接
+                            if(username != ""){
+                            window.location.href = "personal.html";
+                            } else {
+                            window.location.href = "login.html";
+                            }
+                            });
+                        </script>
+
+然后登录界面和个人页面也都有相应的功能
+
+卖点，如果用户不存cookie则将登录界面输入的用户名传到个人页面
+
+ps. 我的google和edge都无法正常显示我的cookie，目前只用firefox成功测试！

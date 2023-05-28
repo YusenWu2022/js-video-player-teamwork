@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>点击头像登录</title>
+</head>
+<body>
+
+	<!-- 图片链接到登录页面 -->
+	<a href="login.html"><img src="avatar.png"></a>
+
+	<!-- 添加表单，使用 JavaScript 处理用户输入 -->
+	<form id="username-form">
+		<input type="text" id="username-input" placeholder="请输入用户名">
+		<button type="submit" onclick="toPersonalPage()">提交</button>
+	</form>
+
+	<script type="text/javascript">
+		var d = new Date();
+		d.setTime(d.getTime() + (365*24*60*60*1000)); // 过期时间为一年后
+		var expires = "expires=" + d.toUTCString();
+		document.cookie = "myCookie=username; "+ expires + "; path=/;";
+		var hasCookie = document.cookie.indexOf("username") !== -1;
+				               
+		
+		// 获取表单和输入框的引用
+										
+
+		
+
+		function cookiecheck(){
+
+							 return new Promise(function(resolve, reject) {
+										const form = document.getElementById("username-form");
+										const input = document.getElementById("username-input");									
+											// 从输入框获取用户名
+											const username = input.value;
+											localStorage.setItem("transferredData", username); //如果用户选择不存cookie
+
+											var saveCookie = confirm("是否保存 cookie？");
+												if(saveCookie){
+												// 如果用户选择保存 cookie，则设置 cookie
+												document.cookie = "username=" + username;
+												};	
+							resolve();
+							});
+										
+										
+      }
+		
+		function toPersonalPage(){
+			event.preventDefault();
+			cookiecheck().then(function(){
+				window.location.href = "personal.html";
+			});
+			
+		}
+	</script>
+
+</body>
+</html>
